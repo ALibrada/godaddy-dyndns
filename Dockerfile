@@ -8,6 +8,8 @@ RUN apt-get update && apt-get install -y \
 
 # Define working directory
 WORKDIR /data
+COPY ./godaddy-dyndns.py /data
+COPY ./godaddy-dyndns.sh /data
 
 # Define default command
-CMD ["godaddy-dyndns.sh"]
+CMD ["/data/godaddy-dyndns.sh"]
