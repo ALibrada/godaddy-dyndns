@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
-
-import configparser
+import os
 import logging
 import sys
 
@@ -8,15 +7,13 @@ import pif
 import pygodaddy
 
 
-logging.basicConfig(filename='godaddy-dyndns.log',
+logging.basicConfig(filename='godaddy.log',
 		    format='%(asctime)s %(message)s',
-		    level=logging.INFO)   
-config = configparser.ConfigParser()
-config.read('godaddy-dyndns.conf')
+		    level=logging.INFO)
 
 client = pygodaddy.GoDaddyClient()
-is_logged_in = client.login(config.get('godaddy', 'username'),
-			    config.get('godaddy', 'password'))
+is_logged_in = client.login(os.environ.get('GODADDY_USERNAME'),
+			                os.environ.get('GODADDY_PASSWORD'))
 if not is_logged_in:
     logging.error('Login failed!')
     sys.exit(1)
