@@ -7,7 +7,7 @@ import pif
 import pygodaddy
 
 
-logging.basicConfig(filename='godaddy.log',
+logging.basicConfig(stream=sys.stdout,
 		    format='%(asctime)s %(message)s',
 		    level=logging.INFO)
 
